@@ -1,0 +1,48 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+.env/
+ENV/
+.venv
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de registro
+*.log
+
+# Archivos temporales
+tmp/
+temp/
+
+# Archivos de audio generados
+*.wav
+*.mp3
+*.ogg
+
+# Directorios de node_modules
+node_modules/
+
+# Archivos grandes
+*.dylib
+*.db
+*.dic
+
+# Directorios específicos
+vozeia/vozeia/ 
