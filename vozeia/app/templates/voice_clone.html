@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block title %}VozEIA - Clonador de Voz{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="text-center my-5">
+        <h1 class="display-4 fw-bold">Clonador de Voz</h1>
+        <p class="lead">Crea una voz sintética idéntica a la tuya</p>
+    </header>
+
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto">
+            <div class="section">
+                <h2 class="section-title">¿Cómo funciona?</h2>
+                <p>VozEIA te permite clonar tu voz en 3 sencillos pasos:</p>
+                <div class="row mt-4">
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                            <span class="fs-2 fw-bold">1</span>
+                        </div>
+                        <h4 class="mt-3">Graba tu voz</h4>
+                        <p>Graba un audio leyendo el texto de ejemplo que proporcionamos abajo.</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                            <span class="fs-2 fw-bold">2</span>
+                        </div>
+                        <h4 class="mt-3">Sube el audio</h4>
+                        <p>Sube el archivo de audio que acabas de grabar a nuestra plataforma.</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                            <span class="fs-2 fw-bold">3</span>
+                        </div>
+                        <h4 class="mt-3">Clona tu voz</h4>
+                        <p>Escribe cualquier texto y nuestra IA generará un audio con tu voz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="section">
+                <h2 class="section-title">Texto de ejemplo para grabar</h2>
+                <p>Para obtener mejores resultados, te recomendamos grabar un audio leyendo el siguiente texto. Habla con claridad y a un ritmo normal:</p>
+                <div class="p-3 bg-light rounded border mt-3">
+                    <p class="sample-text">
+                        "Hola, estoy probando el clonador de voz VozEIA. Esta tecnología permite replicar mi voz y utilizarla para generar nuevos audios. Es impresionante cómo la inteligencia artificial puede capturar los matices y características únicas de cada persona. Espero que el resultado sea natural y se parezca mucho a mi forma de hablar."
+                    </p>
+                    <button class="btn btn-sm btn-outline-primary" id="copy-sample-text">
+                        <i class="fas fa-copy"></i> Copiar texto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="section">
+                <h2 class="section-title">Subir Audio</h2>
+                <form id="upload-form" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="audio-file" class="form-label">Selecciona un archivo de audio con tu voz:</label>
+                        <input type="file" class="form-control" id="audio-file" name="audio" accept=".wav,.mp3,.ogg,.flac" required>
+                        <div class="form-text">Formatos soportados: WAV, MP3, OGG, FLAC. Máximo 16MB.</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary" id="upload-btn">
+                            <i class="fas fa-upload"></i> Subir Audio
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-3" id="upload-status" style="display: none;">
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                            <div>Procesando audio...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3" id="upload-success" style="display: none;">
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Audio subido y procesado correctamente.
+                    </div>
+                    <div id="audio-info" class="mb-3">
+                        <p><strong>Duración:</strong> <span id="audio-duration">0</span> segundos</p>
+                        <p><strong>Frecuencia de muestreo:</strong> <span id="audio-sample-rate">0</span> Hz</p>
+                    </div>
+                    <div class="audio-player">
+                        <audio id="original-audio" controls></audio>
+                        <p class="text-center mt-2">Audio original</p>
+                    </div>
+                </div>
+                <div class="mt-3" id="upload-error" style="display: none;">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i> <span id="error-message"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="section">
+                <h2 class="section-title">Clonar Voz</h2>
+                <form id="clone-form">
+                    <div class="mb-3">
+                        <label for="text-input" class="form-label">Texto a convertir en voz:</label>
+                        <textarea class="form-control" id="text-input" rows="4" placeholder="Escribe aquí el texto que quieres que la voz clonada diga..." required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="language-select" class="form-label">Idioma:</label>
+                        <select class="form-select" id="language-select">
+                            <option value="es" selected>Español</option>
+                            <option value="en">Inglés</option>
+                            <option value="fr">Francés</option>
+                            <option value="de">Alemán</option>
+                            <option value="it">Italiano</option>
+                            <option value="pt">Portugués</option>
+                            <option value="pl">Polaco</option>
+                            <option value="tr">Turco</option>
+                            <option value="ru">Ruso</option>
+                            <option value="nl">Holandés</option>
+                            <option value="cs">Checo</option>
+                            <option value="ar">Árabe</option>
+                            <option value="zh-cn">Chino (Mandarín)</option>
+                        </select>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success" id="clone-btn" disabled>
+                            <i class="fas fa-clone"></i> Generar Voz Clonada
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-3" id="clone-status" style="display: none;">
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                            <div>Generando voz clonada... Esto puede tardar unos segundos.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3" id="clone-success" style="display: none;">
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Voz clonada generada correctamente.
+                    </div>
+                    <div class="audio-player">
+                        <audio id="cloned-audio" controls></audio>
+                        <p class="text-center mt-2">Voz clonada</p>
+                    </div>
+                    <div class="d-grid mt-3">
+                        <a id="download-btn" class="btn btn-primary" download>
+                            <i class="fas fa-download"></i> Descargar Audio
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-3" id="clone-error" style="display: none;">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i> <span id="clone-error-message"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="section">
+                <h2 class="section-title">Consejos para mejores resultados</h2>
+                <p>Para obtener los mejores resultados con VozEIA:</p>
+                <ul>
+                    <li>Graba en un ambiente silencioso, sin ruido de fondo</li>
+                    <li>Utiliza un micrófono de buena calidad si es posible</li>
+                    <li>Habla con claridad y a un ritmo natural</li>
+                    <li>La muestra de audio debe durar al menos 10-15 segundos</li>
+                    <li>Evita grabaciones con eco o reverberación</li>
+                    <li>Para textos largos, es mejor dividirlos en frases más cortas</li>
+                </ul>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>Nota importante:</strong> Esta herramienta debe utilizarse de manera ética y responsable. No utilices voces clonadas para suplantar la identidad de otras personas o para fines maliciosos.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/voice_clone.js') }}"></script>
+{% endblock %} 

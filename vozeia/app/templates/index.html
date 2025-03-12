@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}VozEIA - Asistente y Clonador de Voz{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="text-center my-5">
+        <h1 class="display-4 fw-bold">VozEIA</h1>
+        <p class="lead">Tecnología de voz inteligente con IA</p>
+    </header>
+
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto">
+            <div class="section text-center">
+                <h2 class="section-title">¿Qué es VozEIA?</h2>
+                <p>VozEIA es una plataforma de tecnología de voz que ofrece dos herramientas principales: un asistente de voz inteligente para mantener conversaciones naturales y un clonador de voz que te permite crear una voz sintética idéntica a la tuya.</p>
+                <div class="mt-4 d-flex justify-content-center gap-3">
+                    <a href="{{ url_for('speech_therapy') }}" class="btn btn-primary btn-lg">Asistente de Voz</a>
+                    <a href="{{ url_for('voice_clone') }}" class="btn btn-success btn-lg">Clonador de Voz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title text-center mb-4">Nuestras Herramientas</h2>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-comments fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Asistente de Voz</h3>
+                    <p class="card-text">Mantén conversaciones fluidas y naturales con nuestro asistente inteligente. El asistente entiende el contexto y responde de manera coherente a tus preguntas y comentarios.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check text-success me-2"></i> Reconocimiento de voz avanzado</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Respuestas inteligentes y contextuales</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Voz natural y agradable</li>
+                    </ul>
+                    <a href="{{ url_for('speech_therapy') }}" class="btn btn-outline-primary mt-3">Probar Asistente</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-clone fa-3x text-success mb-3"></i>
+                    <h3 class="card-title">Clonador de Voz</h3>
+                    <p class="card-text">Crea una voz sintética idéntica a la tuya. Graba un audio de muestra y nuestra IA generará nuevos audios con tu voz diciendo cualquier texto.</p>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check text-success me-2"></i> Clonación de voz de alta calidad</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Soporte para múltiples idiomas</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Proceso sencillo en 3 pasos</li>
+                    </ul>
+                    <a href="{{ url_for('voice_clone') }}" class="btn btn-outline-success mt-3">Probar Clonador</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto">
+            <div class="section">
+                <h2 class="section-title text-center">¿Cómo Funciona?</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                            <i class="fas fa-microphone fa-2x"></i>
+                        </div>
+                        <h4 class="mt-3">Habla</h4>
+                        <p>Utiliza tu micrófono para interactuar con nuestras herramientas de voz</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                            <i class="fas fa-brain fa-2x"></i>
+                        </div>
+                        <h4 class="mt-3">Procesa</h4>
+                        <p>Nuestra IA procesa tu voz y genera respuestas o clonaciones</p>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                            <i class="fas fa-volume-up fa-2x"></i>
+                        </div>
+                        <h4 class="mt-3">Escucha</h4>
+                        <p>Disfruta de respuestas naturales o de tu voz clonada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="section text-center">
+                <h2 class="section-title">Comienza a Explorar</h2>
+                <p>Descubre el poder de la tecnología de voz con inteligencia artificial.</p>
+                <div class="mt-4 d-flex justify-content-center gap-3">
+                    <a href="{{ url_for('speech_therapy') }}" class="btn btn-primary btn-lg">Asistente de Voz</a>
+                    <a href="{{ url_for('voice_clone') }}" class="btn btn-success btn-lg">Clonador de Voz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
