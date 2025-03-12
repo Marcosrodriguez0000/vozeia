@@ -1,66 +1,71 @@
-# VozEIA - Asistente de Voz Inteligente
+# VozEIA - Asistente y Clonador de Voz
 
-VozEIA es una aplicación web que combina tecnologías de reconocimiento de voz, síntesis de voz y clonación de voz para crear una experiencia interactiva para personas con dificultades del habla o cualquier usuario que desee interactuar mediante la voz.
+VozEIA es una plataforma de inteligencia artificial que combina un asistente de voz interactivo y un clonador de voz en una sola aplicación web.
 
-## Características principales
+## Características
 
-- **Asistente de voz inteligente**: Conversación natural mediante reconocimiento y síntesis de voz.
-- **Clonación de voz**: Tecnología avanzada para clonar voces a partir de muestras de audio.
-- **Interfaz moderna**: Diseño intuitivo y atractivo con animaciones y efectos visuales.
-- **Multilingüe**: Soporte para español y otros idiomas.
+### Asistente de Voz
+- Interfaz de usuario moderna y futurista con efectos visuales reactivos
+- Reconocimiento de voz en tiempo real
+- Respuestas de voz naturales
+- Visualización de ondas de audio
+- Compatibilidad con múltiples navegadores (optimizado para Chrome/Edge)
 
-## Tecnologías utilizadas
+### Clonador de Voz
+- Capacidad para clonar voces a partir de muestras de audio
+- Generación de voz sintética que imita la voz original
+- Interfaz intuitiva para cargar y procesar muestras
 
-- **Backend**: Flask (Python)
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Reconocimiento de voz**: Web Speech API
-- **Síntesis de voz**: TTS (Text-to-Speech)
-- **Modelo de voz**: XTTS v2 (Multilingual)
-
-## Requisitos
-
-- Python 3.9+
-- Navegador moderno (Chrome, Edge recomendados)
-- Micrófono
+## Tecnologías Utilizadas
+- Python (Flask)
+- JavaScript
+- HTML/CSS
+- WebSpeech API
+- Tecnologías de procesamiento de voz y NLP
 
 ## Instalación
 
-1. Clonar el repositorio:
-   ```
-   git clone https://github.com/tu-usuario/vozeia.git
-   cd vozeia
-   ```
+1. Clona este repositorio:
+```
+git clone https://github.com/Marcosrodriguez0000/vozeia.git
+```
 
-2. Crear un entorno virtual:
-   ```
-   python -m venv .venv
-   source .venv/bin/activate  # En Windows: .venv\Scripts\activate
-   ```
+2. Navega al directorio del proyecto:
+```
+cd vozeia
+```
 
-3. Instalar dependencias:
-   ```
-   pip install -r requirements.txt
-   ```
+3. Crea y activa un entorno virtual:
+```
+python -m venv .venv
+source .venv/bin/activate  # En Windows: .venv\Scripts\activate
+```
 
-4. Ejecutar la aplicación:
-   ```
-   python -m app.app
-   ```
+4. Instala las dependencias:
+```
+pip install -r requirements.txt
+```
 
-5. Abrir en el navegador:
-   ```
-   http://localhost:8082
-   ```
+5. Ejecuta la aplicación:
+```
+python -m app.app --host=0.0.0.0 --port=8082
+```
+
+6. Abre tu navegador y visita:
+```
+http://localhost:8082
+```
 
 ## Uso
 
-- **Asistente de voz**: Navega a la sección "Asistente de Voz" y haz clic en el botón del micrófono para comenzar a hablar.
-- **Clonación de voz**: Sube un archivo de audio con tu voz y escribe el texto que deseas que se reproduzca con tu voz clonada.
+1. **Asistente de Voz**: Haz clic en el botón del micrófono y habla con el asistente.
+2. **Clonador de Voz**: Sube muestras de audio y sigue las instrucciones para clonar una voz.
+
+## Notas para Desarrolladores
+
+- La aplicación está optimizada para Chrome y Edge, pero incluye adaptaciones para Safari.
+- Para acceder desde otros dispositivos en la misma red, usa la IP de tu máquina con el puerto 8082.
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo LICENSE para más detalles.
-
-## Contacto
-
-Para preguntas o sugerencias, contacta a [tu-email@ejemplo.com]. 
+Este proyecto está disponible como código abierto bajo los términos de la licencia MIT. 
